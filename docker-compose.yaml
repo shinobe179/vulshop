@@ -1,0 +1,51 @@
+version: '3.0'
+
+services:
+  nginx:
+    image: nginx:1.22
+    volumes:
+      - ./nginx/conf.d:/etc/nginx/conf.d
+      - ./nginx/tls:/etc/nginx/tls
+      - ./public:/public
+    ports:
+      - "8443:443"
+    restart: always
+
+  #webapp:
+  #  build: ./webapp/go
+  #  environment:
+  #    ISUCON_DB_HOST: mysql
+  #    ISUCON_DB_PORT: 3306
+  #    ISUCON_DB_USER: isucon
+  #    ISUCON_DB_PASSWORD: isucon
+  #    ISUCON_DB_NAME: isuports
+  #    ISUCON_ADMIN_HOSTNAME: admin.t.isucon.dev
+  #  ports:
+  #    - "3000:3000"
+  #  links:
+  #    - mysql
+  #  volumes:
+  #    - ./webapp:/home/isucon/webapp
+  #    - tenant_db:/home/isucon/webapp/tenant_db
+  #    - initial_data:/home/isucon/initial_data
+  #    - gopkg:/home/isucon/go/pkg
+  #  init: true
+  #  restart: always
+
+  mysql:
+    image: mysql/mysql-server:8.0.29
+    environment:
+      - "MYSQL_ROOT_HOST=%"
+      - "MYSQL_ROOT_PASSWORD=root"
+    volumes:
+      - ./mysql/init:/docker-entrypoint-initdb.d
+      - mysql:/var/lib/mysql
+    ports:
+      - 3306:3306
+    restart: always
+
+volumes:
+  mysql:
+  #gopkg:
+  #tenant_db:
+  #initial_data:
