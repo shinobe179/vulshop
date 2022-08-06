@@ -25,10 +25,9 @@ def admin():
 def products():
     q = request.args.get('q', '')
     params = {'q': q}
-
     try:
         api_response = requests.get(API_URL + '/api/v1/products', params=params)
-    except ConnectionError as e:
+    except ConnectionError:
         return render_template('error.html', msg='API request is failed.')
     products = api_response.json()['response']['products']
     cnt = len(products)
@@ -51,10 +50,6 @@ def purchase():
 @app.route('/login')
 def login():
     pass
-
-
-def error_handler(msg):
-    return render_template('error.html', msg=msg)
 
 
 def run():

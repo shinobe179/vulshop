@@ -1,14 +1,17 @@
 {% extends "layout.html" %}
 {% block content %}
-  <h1>Products</h1>
+  <h1>商品</h1>
   <form>
-    <label for="search">search</label>
+    <label for="search">検索</label>
     <input type="text" name="q" value="{{ q }}">
     <input type="submit" action="/shop" method="GET" value="search">  
   </form>
-  {% if q %}
-    <p><b>query: {{ q }}, {{ cnt }} product(s) is hit!</b></p>
-  {% endif %}
+    <div id="description">
+    {% if q %}
+      <p>検索ワード: {{ q }}</p>
+    {% endif %}
+      <p>{{ cnt }} 件の商品があります。</p>
+  </div>
   <div id="column" class="column04">
     <ul>
     {% for product in products %}
@@ -16,8 +19,8 @@
         <a href="/product/{{ product['id'] }}">
           <img src="{{ url_for('static', filename='/img/noimage.jpg') }}" />
           <span>{{ product['name'] }}</span>
-          <span>price: {{ product['price'] }}</span>
-          <span>stock: {{ product['stock'] }}</span>
+          <span>価格：{{ product['price'] }} 円</span>
+          <span>在庫：{{ product['stock'] }} 個</span>
         </a>
       </li>
     {% endfor %}

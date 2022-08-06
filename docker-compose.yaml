@@ -43,12 +43,10 @@ services:
     volumes:
       - ./mysql/init:/docker-entrypoint-initdb.d
       - mysql:/var/lib/mysql
+      - ./mysql/my.cnf:/etc/mysql/conf.d/my.cnf
     ports:
-      - 3306:3306
+      - "127.0.0.1:3306:3306"
     restart: always
 
 volumes:
   mysql:
-  #gopkg:
-  #tenant_db:
-  #initial_data:

@@ -59,34 +59,46 @@
 	margin: 0 24px 0 24px;
 	width: 100%;
 	max-width: 1000px;
-  }
+}
 
-  #header p {
+#header p {
 	float: left;
 	margin: 22px 0 0;
 	font-size: 1.4rem;
 	font-weight: 700;
-  }
+}
 
-  #header ul {
+#header ul {
 	float: left;
 	list-style-type: none;
 	margin: 14px 0;
 	font-size: 2.4rem;
 	font-weight: 500;
-  }
+}
 
-  #header ul li {
+#header ul li {
 	float: left;
 	margin-right: 40px;
-  }
+}
 
-  #header ul li:last-child {
+#header ul li:last-child {
 	margin-right: 0;
-  }
+}
 
-  #header ul li a {
+#header ul li a {
 	font-size: 2.rem;
 	color: #ffffff;
 	text-decoration: none;
-  }
+}
+
+h1 {
+	  margin: 24px;
+}
+
+form {
+	  margin: 24px;
+}
+
+#description {
+	margin: 24px;
+}

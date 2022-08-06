@@ -17,7 +17,8 @@ def connect_db():
                                 user=DB_USER,
                                 password=DB_PASS,
                                 database=DB_NAME,
-                                cursorclass=pymysql.cursors.DictCursor)
+                                cursorclass=pymysql.cursors.DictCursor,
+                                charset='utf8mb4')
     cursor = connection.cursor()
     return cursor
 
@@ -26,7 +27,7 @@ def connect_db():
 def list_products(q=''):
     query = 'SELECT id, name, price, stock FROM products '
     if q:
-        query += f" WHERE name LIKE '%{q}%' AND active = true;"
+        query += f" WHERE (name LIKE '%{q}%' OR description LIKE '%{q}%') AND active = true;"
     else:
         query += 'WHERE active = true;'
     print(query)
