@@ -1,0 +1,92 @@
+#column ul {
+	width: calc(100 + 20px);
+	margin: 50px auto 0 auto;
+	padding: 0 20px;
+	display: flex;
+	flex-wrap: wrap;
+	list-style: none;
+}
+
+#column li {
+	padding: 0 10px 20px;
+}
+
+#column li a,
+#column li a:visited {
+	text-decoration: none;
+	color: #111;
+}
+
+#column li p {
+	font-size: 90%;
+	margin-bottom: 3px;
+}
+
+#column li span {
+	font-size: 80%;
+	display: block;
+}
+
+.column02 li {
+	width: calc(50% - 20px);
+}
+
+.column03 li {
+	width: calc(33.3333% - 20px);
+}
+
+.column04 li {
+	width: calc(25% - 20px);
+}
+
+.column05 li {
+	width: calc(20% - 20px);
+}
+
+#column img {
+	width: 100%;
+	height: auto;
+	margin-bottom: 5px;
+}
+
+#header {
+	width: 100%;
+	background-color: #303030;
+  }
+
+#header .wrapper {
+	overflow: hidden;
+	margin: 0 24px 0 24px;
+	width: 100%;
+	max-width: 1000px;
+  }
+
+  #header p {
+	float: left;
+	margin: 22px 0 0;
+	font-size: 1.4rem;
+	font-weight: 700;
+  }
+
+  #header ul {
+	float: left;
+	list-style-type: none;
+	margin: 14px 0;
+	font-size: 2.4rem;
+	font-weight: 500;
+  }
+
+  #header ul li {
+	float: left;
+	margin-right: 40px;
+  }
+
+  #header ul li:last-child {
+	margin-right: 0;
+  }
+
+  #header ul li a {
+	font-size: 2.rem;
+	color: #ffffff;
+	text-decoration: none;
+  }

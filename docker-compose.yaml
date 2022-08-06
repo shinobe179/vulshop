@@ -11,26 +11,29 @@ services:
       - "8443:443"
     restart: always
 
-  #webapp:
-  #  build: ./webapp/go
-  #  environment:
-  #    ISUCON_DB_HOST: mysql
-  #    ISUCON_DB_PORT: 3306
-  #    ISUCON_DB_USER: isucon
-  #    ISUCON_DB_PASSWORD: isucon
-  #    ISUCON_DB_NAME: isuports
-  #    ISUCON_ADMIN_HOSTNAME: admin.t.isucon.dev
-  #  ports:
-  #    - "3000:3000"
-  #  links:
-  #    - mysql
-  #  volumes:
-  #    - ./webapp:/home/isucon/webapp
-  #    - tenant_db:/home/isucon/webapp/tenant_db
-  #    - initial_data:/home/isucon/initial_data
-  #    - gopkg:/home/isucon/go/pkg
-  #  init: true
-  #  restart: always
+  bff:
+    build: ./bff
+    environment:
+      API_HOST: api
+      API_PORT: 3001
+    ports:
+      - "127.0.0.1:3000:3000"
+    depends_on:
+      - api
+    restart: always
+
+  api:
+    build: ./api
+    environment:
+      DB_HOST: mysql
+      DB_USER: admin
+      DB_PASS: 12345
+      DB_NAME: vulshop
+    ports:
+      - "127.0.0.1:3001:3001"
+    depends_on:
+      - mysql
+    restart: always
 
   mysql:
     image: mysql/mysql-server:8.0.29
