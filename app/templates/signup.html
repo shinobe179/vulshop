@@ -1,0 +1,11 @@
+{% extends "layout.html" %}
+{% block content %}
+  <h1>ユーザー登録</h1>
+  <form action="/signup" method="post">
+    <label>ユーザー名</label>
+    <input type="text" name="name">
+    <label>パスワード</label>
+    <input type="text" name="password">
+    <input type="submit" value="ユーザー登録">  
+  </form>
+{% endblock %}

@@ -1,0 +1,25 @@
+{% extends "layout.html" %}
+{% block content %}
+<h1>カート</h1>
+<table>
+    <tr>
+        <th>商品名</th><th>個数</th><th>単価</th><th>合計</th>
+    </tr>
+    {% for product in products %}
+    <tr>
+        <td>
+            <a href="/product/{{ product['id'] }}">{{ product['name'] }}</a>
+        </td>
+        <td>{{ product['number'] }}</td>
+        <td>{{ product['price'] }}</td>
+        <td>{{ product['number'] * product['price'] }}</td>
+    </tr>
+    {% endfor %}
+</table>
+
+<p>計：{{ total }} 円</p>
+
+<form action="/purchase" method="POST">
+    <input type="submit" value="購入する" />
+</form>
+{% endblock %}

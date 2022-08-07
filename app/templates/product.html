@@ -1,0 +1,11 @@
+{% extends "layout.html" %}
+{% block content %}
+  <h1>{{ product['name'] }}</h1>
+    <img src="img/{{ product['id']}}.png" />
+    <div id="description">
+      <p>価格：{{ product['price'] }} 円</p>
+      <p>在庫：{{ product['stock'] }} 個</p>
+      <p>{{ product['description'] }}</p>
+  </div>
+  <a href="/products">戻る</a>
+{% endblock %}

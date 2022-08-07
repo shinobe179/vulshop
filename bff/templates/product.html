@@ -1,9 +1,0 @@
-{% extends "layout.html" %}
-{% block content %}
-  <h1>{{ product['name'] }}</h1>
-    <img src="img/{{ product['id']}}.png" />
-    <p>price: {{ product['price'] }}</p>
-    <p>stock: {{ product['stock'] }}</p>
-    <p>description: {{ product['description'] }}</p>
-  <a href="/products">Back</a>
-{% endblock %}

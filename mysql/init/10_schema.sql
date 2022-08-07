@@ -7,8 +7,8 @@ DROP TABLE IF EXISTS `sessions`;
 CREATE TABLE `users` (
   `id` BIGINT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(255) NOT NULL,
-  `created_at` BIGINT NOT NULL,
-  `updated_at` BIGINT NOT NULL,
+  `created_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `password_hash` VARCHAR(255) NOT NULL,
   `active` BOOLEAN NOT NULL,
   PRIMARY KEY (`id`),
@@ -21,8 +21,8 @@ CREATE TABLE `products` (
   `price` INT UNSIGNED NOT NULL,
   `description` VARCHAR(255) NOT NULL,
   `stock` INT NOT NULL,
-  `created_at` BIGINT NOT NULL,
-  `updated_at` BIGINT NOT NULL,
+  `created_at` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `active` BOOLEAN NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `name` (`name`)
@@ -31,8 +31,18 @@ CREATE TABLE `products` (
 CREATE TABLE `sessions` (
   `user_id` BIGINT NOT NULL AUTO_INCREMENT,
   `session` VARCHAR(255) NOT NULL,
-  `created_at` BIGINT NOT NULL,
-  `expired_at` BIGINT NOT NULL,
+  `created_at` TIMESTAMP NOT NULL,
+  `expired_at` TIMESTAMP NOT NULL,
+  `active` BOOLEAN NOT NULL,
   PRIMARY KEY (`user_id`, `session`),
   UNIQUE KEY `session` (`session`)
+) ENGINE=InnoDB DEFAULT CHARACTER SET=utf8mb4;
+
+CREATE TABLE `carts` (
+  `session` VARCHAR(255) NOT NULL,
+  `product_id` BIGINT NOT NULL,
+  `number` BIGINT NOT NULL,
+  `created_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`session`, `product_id`),
+  UNIQUE KEY `idx_session_product_id` (`session`, `product_id`)
 ) ENGINE=InnoDB DEFAULT CHARACTER SET=utf8mb4;

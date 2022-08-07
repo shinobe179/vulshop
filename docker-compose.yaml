@@ -11,26 +11,15 @@ services:
       - "8443:443"
     restart: always
 
-  bff:
-    build: ./bff
-    environment:
-      API_HOST: api
-      API_PORT: 3001
-    ports:
-      - "127.0.0.1:3000:3000"
-    depends_on:
-      - api
-    restart: always
-
-  api:
-    build: ./api
+  app:
+    build: ./app
     environment:
       DB_HOST: mysql
       DB_USER: admin
       DB_PASS: 12345
       DB_NAME: vulshop
     ports:
-      - "127.0.0.1:3001:3001"
+      - "127.0.0.1:3000:3000"
     depends_on:
       - mysql
     restart: always
@@ -44,9 +33,16 @@ services:
       - ./mysql/init:/docker-entrypoint-initdb.d
       - mysql:/var/lib/mysql
     ports:
-      - 3306:3306
+      - "127.0.0.1:3306:3306"
     restart: always
 
+  adminer:
+    image: adminer:latest
+    ports:
+      - "127.0.0.1:18080:8080"
+    depends_on:
+      - mysql
+    restart: always
 volumes:
   mysql:
   #gopkg:

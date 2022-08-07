@@ -1,0 +1,40 @@
+{% extends "layout.html" %}
+{% block content %}
+  <h1>商品</h1>
+    <div id="search">
+      <form>
+        <label for="search">検索</label>
+        <input type="text" name="q" value="{{ q }}">
+        <input type="submit" action="/shop" method="GET" value="search">  
+      </form>
+    </div>
+    <div id="description">
+    {% if q %}
+      <p>検索ワード: {{ q }}</p>
+    {% endif %}
+      <p>{{ cnt }} 件の商品があります。</p>
+  </div>
+  <div id="column" class="column04">
+    <ul>
+    {% for product in products %}
+      <li>
+        <a href="/product/{{ product['id'] }}">
+          <img src="{{ url_for('static', filename='/img/noimage.jpg') }}" />
+          <span>{{ product['name'] }}</span>
+          <span>価格：{{ product['price'] }} 円</span>
+          <span>在庫：{{ product['stock'] }} 個</span>
+        </a>
+        <form action="cart" method="post">
+          <select name="number">
+          {% for i in range(product['stock']) %}
+          <option>{{ i+1 }}</option>
+          {% endfor %}
+          </select>
+          <input type="hidden" name="product_id" value="{{ product['id'] }}" />
+          <input type="submit" value="カートに追加" />
+      </form>
+      </li>
+    {% endfor %}
+    </ul>
+  </div>
+{% endblock %}

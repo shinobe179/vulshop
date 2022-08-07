@@ -1,0 +1,35 @@
+<!doctype html>
+    <head>
+        <meta chaset="utf-8">
+        <title>{{ title }}</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='/css/Skeleton-2.0.4/css/normalize.css') }}" />
+        <link rel="stylesheet" href="{{ url_for('static', filename='/css/Skeleton-2.0.4/css/skeleton.css') }}" />
+        <link rel="stylesheet" href="{{ url_for('static', filename='/css/custom.css') }}" />
+    </head>
+    <body>
+        <header id="header">
+            <div class="container">
+                <div class="left-box">
+                    <ul>
+                        <li><a href="/">トップ</a></li>
+                        <li><a href="/products">商品</a></li>
+                    </ul>
+                </div>
+                <div class="right-box">
+                    <ul>
+                        {% if session_user %}
+                        <li><a href="/cart">{{ session_user.name }} さんのカート</a></li>
+                        <li><a href="/signout">サインアウト</a></li>
+                        {% else %}
+                        <li><a href="/signup">サインアップ</a></li>
+                        <li><a href="/signin">サインイン</a></li>
+                        {% endif %}
+                    </ul>
+                </div>
+            </div>
+        </header>
+    {% block content %}
+    <!-- ここにメインコンテンツを書く -->
+    {% endblock %}
+    </body>
+</html>
