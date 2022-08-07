@@ -1,4 +1,6 @@
 USE vulshop;
+SET CHARACTER_SET_CLIENT = utf8;
+SET CHARACTER_SET_CONNECTION = utf8;
 INSERT INTO products
     (name, price, description, stock, created_at, updated_at, active)
 VALUES
