@@ -1,4 +1,4 @@
-FROM python:3.10.4
+FROM python:3.10.10
 
 WORKDIR /tmp
 ENV DEBIAN_FRONTEND=noninteractive
